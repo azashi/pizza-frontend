@@ -3,7 +3,7 @@ import React from "react";
 export default function Navbar() {
   return (
     <nav>
-      <div>
+      {/* <div>
         <img src="../logo.png" alt="Logo" />
       </div>
       <div>
@@ -12,7 +12,8 @@ export default function Navbar() {
           <li>Log-In</li>
           <li>About</li>
         </ul>
-      </div>
+      </div> */}
+      <p>hello from navbar</p>
     </nav>
   );
 }
