@@ -9,19 +9,34 @@ export default class OrderItem extends Component {
       food: getQtyID(props.data.FOOD_DETAILS),
       price: props.data.NET_PRICE,
       date: getTime(props.data.DATECREATED),
-      foodList: props.foodList
+      foodList: props.foodList,
+      foodItem: []
     };
   }
 
   componentDidMount() {
-    console.log(this.state.foodList);
+    // console.log(this.state.foodList);
+    // this.setState({foodItem:this.getFoodInfo(,this.state.foodList)})
   }
+
+  getFoodInfo = (foodid, foodList) => {
+    let newarr = [];
+
+    newarr = foodList.filter((row, index) => {
+      if (row.FOOD_ID === foodid) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return newarr;
+  };
 
   render() {
     const { price, date } = this.state;
 
     return (
-      <>
+      <li>
         <p>
           Price : {price} | Order Date : {date}
         </p>
@@ -29,18 +44,15 @@ export default class OrderItem extends Component {
         <ul>
           {this.state.food.map((value, index) => {
             return (
-              <li key={index}>
-                {" "}
-                <Pizza
-                  key={index}
-                  data={value}
-                  foodList={this.state.foodList}
-                />
-              </li>
+              <Pizza
+                key={index}
+                data={value}
+                foodInfo={this.getFoodInfo(value.FOOD_ID, this.state.foodList)}
+              />
             );
           })}
         </ul>
-      </>
+      </li>
     );
   }
 }

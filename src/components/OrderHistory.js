@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Orderitem from "./OrderItem";
-//import { getPizzaInfo } from "../Functions/function";
 
 export default class OrderHistory extends Component {
   constructor(props) {
@@ -11,27 +10,20 @@ export default class OrderHistory extends Component {
     this.userID = props.userID;
   }
 
-  componentDidMount() {
-    axios
-      .get(`https://pizza-back-end.herokuapp.com/getorderinfo/${this.userID}`)
-      .then(res => {
-        this.setState({ orders: res.data });
-        return new Promise(resolve => {
-          resolve();
-        });
-      })
-      .then(() => {
-        axios
-          .get("https://pizza-back-end.herokuapp.com/getpizzainfo")
-          .then(res => {
-            this.setState({ foodList: res.data });
-            //console.log(this.state.orders);
-            //const mo = getPizzaInfo(this.state.orders, this.state.foodList);
-            //this.setState({ mappedOrder: mo });
-            //console.log(mo);
-            console.log(this.state.foodList);
-          });
-      });
+  async componentDidMount() {
+    try {
+      let res = await axios.get(
+        `https://pizza-back-end.herokuapp.com/getorderinfo/${this.userID}`
+      );
+
+      let res1 = await axios.get(
+        "https://pizza-back-end.herokuapp.com/getpizzainfo"
+      );
+
+      this.setState({ orders: res.data, foodList: res1.data });
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   render() {
@@ -41,9 +33,11 @@ export default class OrderHistory extends Component {
         <ul>
           {orders.map((row, index) => {
             return (
-              <li key={index}>
-                <Orderitem data={row} foodList={this.state.foodList} />
-              </li>
+              <Orderitem
+                key={index}
+                data={row}
+                foodList={this.state.foodList}
+              />
             );
           })}
         </ul>
