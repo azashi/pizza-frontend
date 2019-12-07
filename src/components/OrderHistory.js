@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Orderitem from "./OrderItem";
+import { Link } from "react-router-dom";
 
 export default class OrderHistory extends Component {
   constructor(props) {
@@ -32,19 +33,27 @@ export default class OrderHistory extends Component {
 
   render() {
     const { orders } = this.state;
+    //console.log(orders);
     return (
       <div>
-        <ul>
-          {orders.map((row, index) => {
-            return (
-              <Orderitem
-                key={index}
-                data={row}
-                foodList={this.state.foodList}
-              />
-            );
-          })}
-        </ul>
+        {orders.length === 0 ? (
+          <>
+            <h4>It seems you haven't ordered anything yet! </h4>
+            <Link to={`/menu/${this.state.userID}`}>Order now</Link>
+          </>
+        ) : (
+          <ul>
+            {orders.map((row, index) => {
+              return (
+                <Orderitem
+                  key={index}
+                  data={row}
+                  foodList={this.state.foodList}
+                />
+              );
+            })}
+          </ul>
+        )}
       </div>
     );
   }

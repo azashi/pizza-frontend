@@ -28,16 +28,18 @@ export default class Login extends Component {
       `https://pizza-back-end.herokuapp.com/getuserinfo/${number}`
     );
     this.setState({ userid: res.data[0], hasSubmitted: true }, () => {
-      console.log(this.state.userid);
+      //console.log(this.state.userid);
     });
   };
 
   componentDidUpdate() {
     if (this.state.hasSubmitted === true && this.state.userid === undefined) {
+      alert("No user found, redirecting to sign-up");
       this.props.history.push("/createuser");
     }
     if (this.state.hasSubmitted === true && this.state.userid !== undefined) {
-      this.props.history.push(`/orderhistory/${this.state.userid.USER_ID}`);
+      //this.props.history.push(`/orderhistory/${this.state.userid.USER_ID}`);
+      this.props.history.push(`/menu/${this.state.userid.USER_ID}`);
     }
   }
 

@@ -48,7 +48,7 @@ export default class ContactCreate extends Component {
       )
       .then(res => {
         let data = res.data;
-        console.log(data);
+        //console.log(data);
         if (typeof data === "string") {
           let errMsg = data.slice(0, 12);
           if (errMsg === "ER_DUP_ENTRY") {
@@ -59,6 +59,8 @@ export default class ContactCreate extends Component {
         } else {
           this.setState({ userID: data.insertId });
           //console.log(this.state);
+          alert("Please login now.");
+          this.props.history.push("/");
         }
       });
   };

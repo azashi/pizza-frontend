@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Errorpage from "./components/Errorpage";
 import ContactCreate from "./components/ContactCreate";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Menu from "./components/Menu";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route exact path="/orderhistory/:id" component={OrderHistory} />
             <Route exact path="/createuser" component={ContactCreate} />
             <Route exact path="/" component={Login} />
+            <Route exact path="/menu/:userid" component={Menu} />
             <Route component={Errorpage} />
           </Switch>
         </ErrorBoundary>
