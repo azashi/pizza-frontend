@@ -21,7 +21,7 @@
   },
   "author": "Abhishek",
   "license": "MIT",
-  "homepage": "https://github.com/azashi/pizza-frontend#readme",
+  "homepage": ".",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/azashi/pizza-frontend.git"
