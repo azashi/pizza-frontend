@@ -42,17 +42,20 @@ export default class OrderHistory extends Component {
             <Link to={`/menu/${this.state.userID}`}>Order now</Link>
           </>
         ) : (
-          <ul>
-            {orders.map((row, index) => {
-              return (
-                <Orderitem
-                  key={index}
-                  data={row}
-                  foodList={this.state.foodList}
-                />
-              );
-            })}
-          </ul>
+          <>
+            <ul>
+              {orders.map((row, index) => {
+                return (
+                  <Orderitem
+                    key={index}
+                    data={row}
+                    foodList={this.state.foodList}
+                  />
+                );
+              })}
+            </ul>
+            <Link to={`/menu/${this.state.userID}`}>Back to Menu</Link>
+          </>
         )}
       </div>
     );

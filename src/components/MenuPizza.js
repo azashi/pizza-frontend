@@ -12,12 +12,23 @@ export default class MenuPizza extends Component {
   };
 
   handleQuantity = event => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
     //this.props.order(this.state.quantity);
-    this.setState({ [name]: value }, () => {
-      this.props.order(this.state.quantity);
-    });
-    //console.log(this.state.quantity);
+    if (value > 15) {
+      alert("Quantity cannot exceed 15");
+      value = 15;
+    } else if (value < 0) {
+      alert("Quantity cannot be lower than 0");
+      value = 0;
+    } else if (isNaN(value)) {
+      alert("Enter correct quantity number");
+      value = 0;
+    } else {
+      this.setState({ [name]: value }, () => {
+        this.props.order(this.state.quantity, this.state.pizza.FOOD_PRICE);
+      });
+    }
+    //console.log(this.state.pizza.FOOD_PRICE);
   };
 
   render() {
