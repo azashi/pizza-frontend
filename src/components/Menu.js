@@ -15,13 +15,11 @@ export default class Menu extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("https://pizza-back-end.herokuapp.com/getpizzainfo")
-      .then(resp => {
-        this.setState({
-          pizzaList: resp.data
-        });
+    axios.get("http://pizza-back-end.herokuapp.com/getpizzainfo").then(resp => {
+      this.setState({
+        pizzaList: resp.data
       });
+    });
   }
 
   handleSubmit = event => {
@@ -33,7 +31,7 @@ export default class Menu extends Component {
     //console.log(getQtyID(ost));
     axios
       .get(
-        `https://pizza-back-end.herokuapp.com/createorder/${this.state.userid}/${ost}/${this.state.finalPrice}`
+        `http://pizza-back-end.herokuapp.com/createorder/${this.state.userid}/${ost}/${this.state.finalPrice}`
       )
       .then(res => {
         //console.log(res.data.insertId);

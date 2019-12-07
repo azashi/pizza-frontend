@@ -18,11 +18,11 @@ export default class OrderHistory extends Component {
   async componentDidMount() {
     try {
       let res = await axios.get(
-        `https://pizza-back-end.herokuapp.com/getorderinfo/${this.state.userID}`
+        `http://pizza-back-end.herokuapp.com/getorderinfo/${this.state.userID}`
       );
 
       let res1 = await axios.get(
-        "https://pizza-back-end.herokuapp.com/getpizzainfo"
+        "http://pizza-back-end.herokuapp.com/getpizzainfo"
       );
 
       this.setState({ orders: res.data, foodList: res1.data });
