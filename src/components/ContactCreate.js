@@ -44,7 +44,7 @@ export default class ContactCreate extends Component {
   createUser = (contact, fname, lname, addr) => {
     axios
       .get(
-        `http://pizza-back-end.herokuapp.com/createuser/${contact}/${fname}/${lname}/${addr}`
+        `https://pizza-back-end.herokuapp.com/createuser/${contact}/${fname}/${lname}/${addr}`
       )
       .then(res => {
         let data = res.data;

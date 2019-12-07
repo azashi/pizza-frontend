@@ -25,7 +25,7 @@ export default class Login extends Component {
 
   checkUser = async number => {
     let res = await axios.get(
-      `http://pizza-back-end.herokuapp.com/getuserinfo/${number}`
+      `https://pizza-back-end.herokuapp.com/getuserinfo/${number}`
     );
     this.setState({ userid: res.data[0], hasSubmitted: true }, () => {
       //console.log(this.state.userid);
