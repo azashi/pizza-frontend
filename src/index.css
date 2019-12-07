@@ -7,6 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* #root {
+  min-height: 60vh;
+} */
 nav ul {
   padding: 0;
   margin: 0;

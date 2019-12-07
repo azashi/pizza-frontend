@@ -69,13 +69,13 @@ export default class ContactCreate extends Component {
     let msg;
     switch (name) {
       case "firstName":
-        msg = "Enter only alphabets betwwen 2 and 10";
+        msg = "Enter only alphabets between 2 and 10";
         value.match(/^[a-zA-z]{2,10}$/)
           ? this.setState({ showerr: false, [name]: value })
           : this.setState({ showerr: true, [name]: "" });
         break;
       case "lastName":
-        msg = "Enter only alphabets betwwen 2 and 10";
+        msg = "Enter only alphabets between 2 and 10";
         value.match(/^[a-zA-z]{2,10}$/)
           ? this.setState({ showerr: false, [name]: value })
           : this.setState({ showerr: true, [name]: "" });
@@ -88,7 +88,7 @@ export default class ContactCreate extends Component {
         break;
       case "address":
         msg = "Enter correct address";
-        value.match(/^([a-zA-Z0-9],?-?){5,20}[a-z].?$/)
+        value.match(/^([a-zA-Z0-9\s,'-]){1,30}$/)
           ? this.setState({ showerr: false, [name]: value })
           : this.setState({ showerr: true, [name]: "" });
         break;
@@ -100,23 +100,37 @@ export default class ContactCreate extends Component {
 
   render() {
     return (
-      <form>
-        {this.state.showerr ? this.state.errmsg : null}
-        <br />
-        <label>First Name</label>
-        <input type="text" name="firstName" onChange={this.handleChange} />
-        <br />
-        <label>Last Name</label>
-        <input type="text" name="lastName" onChange={this.handleChange} />
-        <br />
-        <label>Contact</label>
-        <input type="text" name="contact" onChange={this.handleChange} />
-        <br />
-        <label>Address</label>
-        <input type="text" name="address" onChange={this.handleChange} />
-        <hr />
-        <input type="submit" value="Submit" onClick={this.handleSubmit} />
-      </form>
+      <div className="container">
+        <form>
+          {this.state.showerr ? (
+            <p className="card-panel lime lighten-2 teal-darken-4-text">
+              {" "}
+              {this.state.errmsg}{" "}
+            </p>
+          ) : null}
+          <br />
+          <label>First Name</label>
+          <input type="text" name="firstName" onChange={this.handleChange} />
+          <br />
+          <label>Last Name</label>
+          <input type="text" name="lastName" onChange={this.handleChange} />
+          <br />
+          <label>Contact</label>
+          <input type="text" name="contact" onChange={this.handleChange} />
+          <br />
+          <label>Address</label>
+          <input type="text" name="address" onChange={this.handleChange} />
+          <br />
+          <input
+            type="submit"
+            value="Submit"
+            onClick={this.handleSubmit}
+            className="waves-effect waves-light btn"
+          />
+          <br />
+          <br />
+        </form>
+      </div>
     );
   }
 }

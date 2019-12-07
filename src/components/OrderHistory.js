@@ -35,11 +35,18 @@ export default class OrderHistory extends Component {
     const { orders } = this.state;
     //console.log(orders);
     return (
-      <div>
+      <div className="container">
         {orders.length === 0 ? (
           <>
             <h4>It seems you haven't ordered anything yet! </h4>
-            <Link to={`/menu/${this.state.userID}`}>Order now</Link>
+            <Link to={`/menu/${this.state.userID}`}>
+              <button className="waves-effect waves-light btn">
+                Order now
+              </button>
+            </Link>
+            <br />
+            <br />
+            <br />{" "}
           </>
         ) : (
           <>
@@ -54,7 +61,14 @@ export default class OrderHistory extends Component {
                 );
               })}
             </ul>
-            <Link to={`/menu/${this.state.userID}`}>Back to Menu</Link>
+            <Link to={`/menu/${this.state.userID}`}>
+              {" "}
+              <button className="waves-effect waves-light btn">
+                Back to Menu
+              </button>
+            </Link>
+            <br />
+            <br />
           </>
         )}
       </div>

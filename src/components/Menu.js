@@ -86,8 +86,8 @@ export default class Menu extends Component {
   render() {
     const pizzaList = this.state.pizzaList;
     return (
-      <div>
-        <h4>Menu</h4>
+      <div className="container">
+        <h2>Menu</h2>
         <ul>
           {pizzaList &&
             pizzaList.map((row, i) => {
@@ -101,14 +101,40 @@ export default class Menu extends Component {
             })}
         </ul>
         <br />
-        <p>Total Price Rs.{this.state.finalPrice}</p>
+        <hr />
+        <p>
+          <span
+            className="badge blue accent-1 white-text"
+            style={{
+              fontSize: "1.4rem"
+            }}
+          >
+            Total Price Rs.{this.state.finalPrice}
+          </span>
+        </p>
         <br />
-        <input type="submit" value="Place order" onClick={this.handleSubmit} />
+        <input
+          type="submit"
+          className="waves-effect waves-light btn"
+          value="Place order"
+          onClick={this.handleSubmit}
+        />
         <br />
         <br />
-        <Link to={`/orderhistory/${this.state.userid}`}>View Past orders</Link>
+        <Link to={`/orderhistory/${this.state.userid}`}>
+          {" "}
+          <button className="waves-effect waves-light btn">
+            View Past orders
+          </button>
+        </Link>
         <br />
-        <Link to="/">Back to login</Link>
+        <br />
+        <Link to="/">
+          <button className="waves-effect waves-light btn">
+            Back to login
+          </button>
+        </Link>
+        <br />
         <br />
       </div>
     );

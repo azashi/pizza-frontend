@@ -26,15 +26,29 @@ export default class Pizza extends Component {
     ] = this.state.foodInfo;
 
     return (
-      <li>
-        <p>{name}</p>
-        <img src={img} alt="pizza" />
-        <div>Description: {desc}</div>
-        <div>Rs.{price}</div>
-        <div>Type: {type === "PIZZA_VEG" ? "VEG" : "NONVEG"}</div>
-        <div>Any addons: {addons}</div>
-        <div>Quantity: {qty}</div>
-      </li>
+      <div class="row">
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-image">
+              <img src={img} alt="pizza" />
+              <span class="card-title">
+                <h3>{name}</h3>
+              </span>
+            </div>
+            <div class="card-content">
+              <h5>{name}</h5>
+              <p>{desc}</p>
+              <div>Rs.{price}</div>
+              <div>Type: {type === "PIZZA_VEG" ? "VEG" : "NONVEG"}</div>
+              <div>Any addons: {addons}</div>
+            </div>
+            <div class="card-action">
+              Quantity:{" "}
+              <span className="badge blue accent-1 white-text">{qty}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

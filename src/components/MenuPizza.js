@@ -44,23 +44,36 @@ export default class MenuPizza extends Component {
     //const qty = this.state.quantity;
 
     return (
-      <li>
-        <p>{name}</p>
-        <img src={img} alt="pizza" />
-        <div>Description: {desc}</div>
-        <div>Rs.{price}</div>
-        <div>Type: {type === "PIZZA_VEG" ? "VEG" : "NONVEG"}</div>
-        <div>Any addons: {addons}</div>
-        <div>
-          Quantity:{" "}
-          <input
-            type="number"
-            value={this.state.quantity}
-            name="quantity"
-            onChange={this.handleQuantity}
-          />
+      <div className="row">
+        <div className="col s12 m8">
+          <div className="card">
+            <div className="card-image">
+              <img src={img} alt="pizza" />
+              <span className="card-title black-text">
+                <h2>{name}</h2>
+              </span>
+            </div>
+            <div className="card-content">
+              <h4>{name}</h4>
+              <p>{desc}</p>
+              <div>Rs.{price}</div>
+              <div>Type: {type === "PIZZA_VEG" ? "VEG" : "NONVEG"}</div>
+              <div>Any addons: {addons}</div>
+            </div>
+            <div className="card-action">
+              <p className="card-panel cyan brown lighten-3 white-text">
+                Quantity:
+              </p>
+              <input
+                type="number"
+                value={this.state.quantity}
+                name="quantity"
+                onChange={this.handleQuantity}
+              />
+            </div>
+          </div>
         </div>
-      </li>
+      </div>
     );
   }
 }

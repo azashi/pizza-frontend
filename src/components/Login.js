@@ -45,8 +45,15 @@ export default class Login extends Component {
 
   render() {
     return (
-      <>
-        <form>
+      <div className="container" style={{ height: "70vh" }}>
+        <form
+          style={{
+            marginTop: "3rem",
+            width: "50vw",
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}
+        >
           <label>Please enter your contact number</label>
           <br />
           <input
@@ -54,9 +61,25 @@ export default class Login extends Component {
             value={this.state.value}
             onChange={this.handleChange}
           />
-          <input type="submit" value="Submit" onClick={this.handleSubmit} />
+          <input
+            className="waves-effect waves-light btn white-text"
+            type="submit"
+            value="Submit"
+            onClick={this.handleSubmit}
+          />
         </form>
-      </>
+        <h4
+          className="yellow accent-3-text"
+          style={{
+            marginRight: "auto",
+            marginLeft: "auto",
+            marginTop: "2rem",
+            textAlign: "center"
+          }}
+        >
+          THE ULTIMATE PIZZA HOUSE!
+        </h4>
+      </div>
     );
   }
 }

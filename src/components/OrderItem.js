@@ -37,8 +37,10 @@ export default class OrderItem extends Component {
 
     return (
       <li>
-        <p>
-          Price : {price} | Order Date : {date}
+        <p className="card-panel teal lighten-2">
+          <h5>
+            Price : {price} | Order Date : {date}
+          </h5>
         </p>
 
         <ul>
