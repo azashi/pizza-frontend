@@ -3,6 +3,8 @@
 Front-end React app to consume backend pizza service.
 <br/> Deployed version at - https://pizza-front-end.herokuapp.com/
 
+![Preview](https://raw.githubusercontent.com/azashi/pizza-frontend/master/Pizza-Burst.gif)
+
 ## Navigation
 
 1. Sign-in with your 9-digit phone(contact) number to create account for ordering delicious pizzas!
