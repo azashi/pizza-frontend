@@ -26,27 +26,33 @@ export default class Pizza extends Component {
     ] = this.state.foodInfo;
 
     return (
-      <div class="row">
-        <div class="col s12 m7">
-          <div class="card">
-            <div class="card-image">
-              <img src={img} alt="pizza" />
-              <span class="card-title">
-                <h3>{name}</h3>
-              </span>
-            </div>
-            <div class="card-content">
-              <h5>{name}</h5>
-              <p>{desc}</p>
-              <div>Rs.{price}</div>
-              <div>Type: {type === "PIZZA_VEG" ? "VEG" : "NONVEG"}</div>
-              <div>Any addons: {addons}</div>
-            </div>
-            <div class="card-action">
-              Quantity:{" "}
-              <span className="badge blue accent-1 white-text">{qty}</span>
-            </div>
-          </div>
+      <div className="card">
+        <div className="card-image">
+          <img src={img} alt="pizza" />
+        </div>
+        <div className="card-content">
+          <h3 className="card-title">{name}</h3>
+          <p>{desc}</p><br />
+          <div>Rs. {price} /-</div><br />
+
+          <div>{type === "PIZZA_VEG" ?
+            (<span className="pizza-type"><span style={{ "color": "green" }} className="material-icons">
+              trip_origin
+          </span>Veg</span>) :
+            (<span className="pizza-type"><span style={{ "color": "red" }} className="material-icons">
+              trip_origin
+            </span>Non-Veg</span>)}</div><br />
+          <div>Any addons: {addons}</div><br />
+
+          <label className="qty-label" htmlFor="quantity">
+            Quantity:
+          <input
+              className="qty"
+              value={qty}
+              disabled
+            />
+          </label>
+
         </div>
       </div>
     );

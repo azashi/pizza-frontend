@@ -10,16 +10,20 @@ export default class Menu extends Component {
 
     this.state = {
       userid: parseInt(this.props.match.params.userid),
-      order: []
+      order: [],
+      finalPrice: 0,
+      isLoading: false
     };
   }
 
   componentDidMount() {
+    this.setState({ isLoading: true });
     axios
       .get("https://pizza-back-end.herokuapp.com/getpizzainfo")
       .then(resp => {
         this.setState({
-          pizzaList: resp.data
+          pizzaList: resp.data,
+          isLoading: false
         });
       });
   }
@@ -27,18 +31,25 @@ export default class Menu extends Component {
   handleSubmit = event => {
     event.preventDefault();
     let ost = this.placeorder("order");
+
+    if (this.state.finalPrice === 0) {
+      alert("Please add Pizza by increasing quantity and then place order");
+      return '';
+    }
     //console.log(ost);
     //console.log("Price is ", ost[1]);
 
     //console.log(getQtyID(ost));
+    this.setState({ isLoading: true });
     axios
       .get(
         `https://pizza-back-end.herokuapp.com/createorder/${this.state.userid}/${ost}/${this.state.finalPrice}`
       )
       .then(res => {
+        this.setState({ isLoading: false });
         //console.log(res.data.insertId);
         if (res.data.insertId) {
-          alert("Order is being placed...");
+          alert("Order is placed...");
           this.props.history.push(`/orderhistory/${this.state.userid}`);
         } else {
           alert(
@@ -85,9 +96,10 @@ export default class Menu extends Component {
 
   render() {
     const pizzaList = this.state.pizzaList;
-    return (
-      <div className="container">
+    return (!this.state.isLoading ?
+      (<div className="menu-container">
         <h2>Menu</h2>
+        <hr />
         <ul>
           {pizzaList &&
             pizzaList.map((row, i) => {
@@ -102,41 +114,39 @@ export default class Menu extends Component {
         </ul>
         <br />
         <hr />
-        <p>
+        <div className="action-wrapper">
+
           <span
-            className="badge blue accent-1 white-text"
+            className="price-wrapper"
             style={{
               fontSize: "1.4rem"
             }}
           >
-            Total Price Rs.{this.state.finalPrice}
+            Total Price <span className="price">Rs. {this.state.finalPrice} /-</span>
           </span>
-        </p>
-        <br />
-        <input
-          type="submit"
-          className="waves-effect waves-light btn"
-          value="Place order"
-          onClick={this.handleSubmit}
-        />
-        <br />
-        <br />
-        <Link to={`/orderhistory/${this.state.userid}`}>
-          {" "}
-          <button className="waves-effect waves-light btn">
-            View Past orders
-          </button>
-        </Link>
-        <br />
-        <br />
-        <Link to="/">
-          <button className="waves-effect waves-light btn">
-            Back to login
-          </button>
-        </Link>
-        <br />
-        <br />
-      </div>
+
+          <div className="action">
+            <button
+              className="action-btn"
+              onClick={this.handleSubmit}
+            >Place order <span className="material-icons">payment</span>
+            </button>
+
+            <Link to={`/orderhistory/${this.state.userid}`}>
+              <button className="action-btn">
+                View Past orders <span className="material-icons">receipt_long</span>
+              </button>
+            </Link>
+
+            <Link to="/">
+              <button className="action-btn">
+                Back to login <span className="material-icons">exit_to_app</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>)
+      : (<div className="loader-wrapper"><div className="loader"></div></div>)
     );
   }
 }

@@ -36,13 +36,10 @@ export default class OrderItem extends Component {
     const { price, date } = this.state;
 
     return (
-      <li>
-        <p className="card-panel teal lighten-2">
-          <h5>
-            Price : {price} | Order Date : {date}
-          </h5>
-        </p>
-
+      <li className="past-order">
+        <h3>
+          Price : {price} | Order Date : {date}
+        </h3>
         <ul>
           {this.state.food.map((value, index) => {
             return (

@@ -1,16 +1,30 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --base-color: #e3e2df;
+  --primary-color: #000;
+  --secondary-color: #9a1750;
+  --ternary-color: #e3afbc;
+  --pop-color: #fd001e;
+  --bgURL : url("https://images.pexels.com/photos/1055054/pexels-photo-1055054.jpeg?auto=compress&cs=tinysrgb&dpr=1&h=650&w=940")
+}
+
 body {
   margin: 0;
   padding: 0;
+  color: var(--primary-color);
+  background-color: var(--base-color);
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* #root {
-  min-height: 60vh;
-} */
-nav ul {
+nav ul,ul,li {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -18,4 +32,315 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
+}
+
+.nav-wrapper{
+  height: 10vh;
+  color: var(--base-color);
+  background-color: var(--secondary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.nav-container{
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.menu-container,.history-container{
+  width: 80%;
+  margin: 10px auto;
+  position: relative;
+  /* border: 1px solid black; */
+}
+
+.history-container{
+  min-height: 80vh;
+}
+
+.history-container h4{
+  margin-bottom: 10px;
+}
+
+.login-container::before{
+content: '';
+position: absolute;
+top: 10vh;
+left: 0;
+background-image: var(--bgURL);
+background-repeat: no-repeat;
+background-position: center center ;
+background-size: cover;
+height: 80vh;
+width: 100vw;
+z-index: -2;
+}
+
+.login-container::after{
+  content: '';
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  background-color: rgba(227,226 ,223 , 0.7);
+  height: 80vh;
+  width: 100vw;
+  z-index: -1;
+  }
+
+.login-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.form-size{
+  width:60%;
+  /* height:80%; */
+  margin: 20px auto;
+}
+
+.form-wrapper{
+  box-shadow: .5px 2px 5px 1px rgba(0, 0, 0, .4);
+  background-color: var(--base-color);
+}
+
+.form-head{
+  background-color: var(--ternary-color);
+  text-align: center;
+  padding: 10px;
+}
+
+.form-body{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.form-body input{
+  margin: 10px 0px;
+  width: 100%;
+  padding: 5px;
+  font-size: 1em;
+  letter-spacing: 1px;
+  font-family: inherit;
+  border: none;
+  background-color: inherit;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.form-foot{
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: var(--base-color);
+  margin-top: 20px;
+}
+
+.form-btn{
+  margin: 10px 0 !important;
+  font-size: 1em !important;
+}
+
+.pop{
+  color: var(--pop-color);
+}
+
+.pop-border:hover{
+  border: 1px solid var(--pop-color);
+}
+
+.err-box{
+  height: 20px;
+  margin-bottom: 10px; 
+}
+
+.card{
+  display: flex;
+  align-items: center;
+  box-shadow: .5px 2px 5px 1px rgba(0, 0, 0, .4);
+  padding: 10px;
+  width: 90%;
+  margin: 20px auto;
+  color: var(--primary-color);
+  background-color: var(--base-color);
+}
+
+.card-title{
+  color: var(--secondary-color);
+}
+
+.card-image{
+  height: 200px;
+  width: 300px;
+  margin-left: 20px;
+  /* border: 2px solid #000; */
+}
+
+.card-image img{
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  box-shadow: .5px .5px 5px 1px rgba(0, 0, 0, .3);
+}
+
+.card-content{
+  margin-left: 40px;
+  padding-bottom: 10px;
+}
+
+.pizza-type{
+  display: flex;
+  align-items: center;
+}
+.pizza-type span{
+  margin-right: 5px;
+}
+
+.qty{
+  margin-left: 10px;
+  border: none;
+  width: 40px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--primary-color);
+  padding: 5px;
+  outline: none;
+  font-size: 1em;
+  text-align: center;
+}
+
+.price-wrapper{
+  display: block;
+  margin: 20px 0px;
+}
+
+.price-wrapper .price{
+  background-color: var(--primary-color);
+  padding: 1px 10px;
+  color: var(--ternary-color);
+  /* border-radius: 5px; */
+}
+
+.action-wrapper{
+position: sticky;
+left: 0;
+bottom: 10px;
+padding: 10px;
+color: var(--primary-color);
+background-color: rgba(245, 245, 245, 0.7);
+box-shadow: .5px .5px 5px 1px rgba(0, 0, 0, .3);
+z-index: 2;
+}
+
+.action-btn{
+  padding: 5px;
+  font-family: inherit;
+  /* border-radius: 5px; */
+  outline: none;
+  border: none;
+  color: var(--primary-color);
+  background-color: var(--ternary-color);
+  margin-left: 20px;
+  margin-bottom: 10px;
+  font-size: .9em;
+  cursor: pointer;
+  transition: all .35s ease;
+}
+
+.anti-btn{
+  margin-bottom: 0 !important;
+  font-size: 1em;
+}
+
+.action-btn span,.material-icons{
+  vertical-align: middle;
+}
+
+.action-btn:hover{
+  color: var(--ternary-color);
+  background-color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.past-order{
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  margin: 20px 0px; 
+}
+
+
+
+.page-footer{
+  height: 10vh;
+  color: var(--base-color);
+  background-color: var(--primary-color);
+}
+
+.page-footer .footer-container{
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.page-footer .footer-container .gh-link{
+  text-decoration: none;
+  color: inherit;
+  transition: all .25s ease;
+}
+
+.page-footer .footer-container .gh-link:hover{
+  border-bottom: 2px solid var(--pop-color);
+}
+
+.loader {
+  border: 10px solid var(--base-color); 
+  border-top: 10px solid var(--ternary-color);
+  border-bottom: 10px solid var(--ternary-color);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-wrapper{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width:720px){
+  .login-container{
+    flex-direction: column-reverse;
+  }
+  .card{
+    flex-direction: column;
+  }
+  .card-image{
+    height: 140px;
+    width: 210px;
+    margin-left: 0px !important;
+    margin-top: 10px !important;
+  }
+  .card-title{
+    margin-top: 10px;
+  }
+  .card-content{
+    margin-left: 30px !important;
+  }
+  .form-size{
+    width: 80%;
+  }
 }

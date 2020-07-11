@@ -3,16 +3,15 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="page-footer">
-      <div className="container">
-        © 2019 | Made by azashi
-        <a
-          className="grey-text text-lighten-4 right"
+      <div className="footer-container">
+        <p>Made by <a
           href="https://github.com/azashi"
           target="_blank"
+          className="gh-link"
           rel="noopener noreferrer"
-        >
-          GitHub
+        ><strong>azashi</strong>
         </a>
+        </p>
       </div>
     </footer>
   );

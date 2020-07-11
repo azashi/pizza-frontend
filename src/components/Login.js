@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "", userid: undefined, hasSubmitted: false };
+    this.state = { value: "", userid: undefined, hasSubmitted: false, isLoading: false };
   }
 
   handleChange = event => {
@@ -24,11 +25,13 @@ export default class Login extends Component {
   };
 
   checkUser = async number => {
+    this.setState({ isLoading: true });
     let res = await axios.get(
       `https://pizza-back-end.herokuapp.com/getuserinfo/${number}`
     );
+
     this.setState({ userid: res.data[0], hasSubmitted: true }, () => {
-      //console.log(this.state.userid);
+      this.setState({ isLoading: false })
     });
   };
 
@@ -44,42 +47,43 @@ export default class Login extends Component {
   }
 
   render() {
-    return (
-      <div className="container" style={{ height: "70vh" }}>
-        <form
-          style={{
-            marginTop: "3rem",
-            width: "50vw",
-            marginLeft: "auto",
-            marginRight: "auto"
-          }}
-        >
-          <label>Please enter your contact number</label>
-          <br />
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <input
-            className="waves-effect waves-light btn white-text"
-            type="submit"
-            value="Submit"
-            onClick={this.handleSubmit}
-          />
-        </form>
-        <h4
-          className="yellow accent-3-text"
-          style={{
-            marginRight: "auto",
-            marginLeft: "auto",
-            marginTop: "2rem",
-            textAlign: "center"
-          }}
-        >
-          THE ULTIMATE PIZZA HOUSE!
-        </h4>
-      </div>
-    );
+
+    return !this.state.isLoading ?
+      (<div className="login-container" style={{ height: "80vh" }}>
+        <div className="left">
+          <ul>
+            <li className="points"><span className="material-icons pop">star_border</span> Enter 9 digit number to login</li>
+            <li className="points"><span className="material-icons pop">star_border</span> If new user then go to <span className="pop">Sign Up</span> page</li>
+            <li className="points"><span className="material-icons pop">star_border</span> After logging in order delicious pizzas!</li>
+          </ul>
+        </div>
+        <div className="right">
+          <div className="form-wrapper">
+            <div className="form-head">
+              <h2>Sign In</h2>
+            </div>
+            <form className="form-body">
+              <label htmlFor="contact">Please enter your <span className="pop">9</span> digit contact number</label>
+              <input
+                name="contact"
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+                placeholder="Number"
+              />
+              <button
+                className="action-btn form-btn"
+                type="submit"
+                onClick={this.handleSubmit}
+              >Login <span className="material-icons">exit_to_app</span></button>
+            </form>
+            <div className="form-foot">
+              <p>New User? <Link to="/createuser" className="pop">Sign Up</Link> </p>
+            </div>
+          </div>
+        </div>
+      </div>)
+
+      : (<div className="loader-wrapper"><div className="loader"></div></div>)
   }
 }

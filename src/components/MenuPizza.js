@@ -44,36 +44,39 @@ export default class MenuPizza extends Component {
     //const qty = this.state.quantity;
 
     return (
-      <div className="row">
-        <div className="col s12 m8">
-          <div className="card">
-            <div className="card-image">
-              <img src={img} alt="pizza" />
-              <span className="card-title black-text">
-                <h2>{name}</h2>
-              </span>
-            </div>
-            <div className="card-content">
-              <h4>{name}</h4>
-              <p>{desc}</p>
-              <div>Rs.{price}</div>
-              <div>Type: {type === "PIZZA_VEG" ? "VEG" : "NONVEG"}</div>
-              <div>Any addons: {addons}</div>
-            </div>
-            <div className="card-action">
-              <p className="card-panel cyan brown lighten-3 white-text">
-                Quantity:
-              </p>
-              <input
-                type="number"
-                value={this.state.quantity}
-                name="quantity"
-                onChange={this.handleQuantity}
-              />
-            </div>
-          </div>
+
+      <div className="card">
+        <div className="card-image">
+          <img src={img} alt="pizza" />
+        </div>
+        <div className="card-content">
+          <h3 className="card-title">{name}</h3>
+          <p>{desc}</p><br />
+          <div>Rs. {price} /-</div><br />
+
+          <div>{type === "PIZZA_VEG" ?
+            (<span className="pizza-type"><span style={{ "color": "green" }} className="material-icons">
+              trip_origin
+          </span>Veg</span>) :
+            (<span className="pizza-type"><span style={{ "color": "red" }} className="material-icons">
+              trip_origin
+            </span>Non-Veg</span>)}</div><br />
+          <div>Any addons: {addons}</div><br />
+
+          <label className="qty-label" htmlFor="quantity">
+            Quantity:
+          <input
+              className="qty"
+              type="number"
+              value={this.state.quantity}
+              name="quantity"
+              onChange={this.handleQuantity}
+            />
+          </label>
+
         </div>
       </div>
+
     );
   }
 }

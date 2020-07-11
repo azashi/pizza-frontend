@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class ContactCreate extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export default class ContactCreate extends Component {
       address: "",
       contact: "",
       errmsg: "",
-      showerr: false
+      showerr: false,
+      isLoading: false
     };
   }
 
@@ -37,18 +39,19 @@ export default class ContactCreate extends Component {
 
       this.createUser(contact, firstName, lastName, address);
 
-      alert("Information sent...");
+      // alert("Information sent...");
     }
   };
 
   createUser = (contact, fname, lname, addr) => {
+    this.setState({ isLoading: true });
     axios
       .get(
         `https://pizza-back-end.herokuapp.com/createuser/${contact}/${fname}/${lname}/${addr}`
       )
       .then(res => {
         let data = res.data;
-        //console.log(data);
+        this.setState({ isLoading: false });
         if (typeof data === "string") {
           let errMsg = data.slice(0, 12);
           if (errMsg === "ER_DUP_ENTRY") {
@@ -99,38 +102,49 @@ export default class ContactCreate extends Component {
   };
 
   render() {
-    return (
-      <div className="container">
-        <form>
-          {this.state.showerr ? (
-            <p className="card-panel lime lighten-2 teal-darken-4-text">
-              {" "}
-              {this.state.errmsg}{" "}
-            </p>
-          ) : null}
+    return (!this.state.isLoading ?
+      (<div className="form-wrapper form-size">
+        <div className="form-head">
+          <h2>Sign Up</h2>
+        </div>
+        <form className="form-body">
+          <p className="err-box pop">
+            {this.state.showerr ? (
+              this.state.errmsg
+            ) : null}
+          </p>
+
+          <label htmlFor="firstName">First Name</label>
+          <input type="text" name="firstName" onChange={this.handleChange} placeholder="Enter your first name" />
           <br />
-          <label>First Name</label>
-          <input type="text" name="firstName" onChange={this.handleChange} />
+          <label htmlFor="lastName">Last Name</label>
+          <input type="text" name="lastName" onChange={this.handleChange} placeholder="Enter your last name" />
           <br />
-          <label>Last Name</label>
-          <input type="text" name="lastName" onChange={this.handleChange} />
+          <label htmlFor="contact">Contact</label>
+          <input type="text" name="contact" onChange={this.handleChange} placeholder="Enter 9 digit number" />
           <br />
-          <label>Contact</label>
-          <input type="text" name="contact" onChange={this.handleChange} />
+          <label htmlFor="address">Address</label>
+          <input type="text" name="address" onChange={this.handleChange} placeholder="Enter your address" />
           <br />
-          <label>Address</label>
-          <input type="text" name="address" onChange={this.handleChange} />
-          <br />
-          <input
+          <button
             type="submit"
-            value="Submit"
             onClick={this.handleSubmit}
-            className="waves-effect waves-light btn"
-          />
-          <br />
-          <br />
+            className="action-btn form-btn"
+          >Submit <span className="material-icons">check_circle_outline</span>
+          </button>
+
         </form>
+        <div className="form-foot">
+          <Link to="/">
+            <button className="action-btn pop-border">
+              Back to login <span className="material-icons">exit_to_app</span>
+            </button>
+          </Link>
+        </div>
       </div>
-    );
+      )
+      : (<div className="loader-wrapper"><div className="loader"></div></div>)
+    )
+
   }
 }
