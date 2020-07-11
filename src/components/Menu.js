@@ -145,6 +145,27 @@ export default class Menu extends Component {
             </Link>
           </div>
         </div>
+        {/* Below markup for mobile screens */}
+        <div className="action-mobile">
+          <button
+            className="action-btn action-btn-mobile"
+            onClick={this.handleSubmit}
+          >Place order <span className="material-icons">payment</span>
+          </button>
+
+          <Link to={`/orderhistory/${this.state.userid}`}>
+            <button className="action-btn action-btn-mobile">
+              View Past orders <span className="material-icons">receipt_long</span>
+            </button>
+          </Link>
+
+          <Link to="/">
+            <button className="action-btn action-btn-mobile">
+              Back to login <span className="material-icons">exit_to_app</span>
+            </button>
+          </Link>
+        </div>
+        {/* Above markup for mobile screens */}
       </div>)
       : (<div className="loader-wrapper"><div className="loader"></div></div>)
     );

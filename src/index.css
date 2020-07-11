@@ -215,7 +215,7 @@ z-index: -2;
 
 .price-wrapper{
   display: block;
-  margin: 20px 0px;
+  margin: 15px 0px;
 }
 
 .price-wrapper .price{
@@ -264,6 +264,13 @@ z-index: 2;
   color: var(--ternary-color);
   background-color: var(--primary-color);
   transform: scale(1.1);
+}
+
+.action-mobile{
+  display: none;
+  padding-top: 10px;
+  box-shadow: .5px .5px 5px 1px rgba(0, 0, 0, .3);
+  background-color: rgba(245, 245, 245, 0.7);
 }
 
 .past-order{
@@ -342,5 +349,20 @@ z-index: 2;
   }
   .form-size{
     width: 80%;
+  }
+  .action-mobile{
+    display: block;
+  }
+  .action{
+    display: none;
+  }
+  .action-wrapper{
+    padding: 5px;
+  }
+  .action-btn-mobile{
+    margin-top: 10px;
+  }
+  .price-wrapper{
+    margin: 10px 0px;
   }
 }
